@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173d35">
+  <meta name="description" content="Mystery Cache A peu d'obra: posa a prova el teu ull de tècnic i calcula el pressupost d'una casa.">
+  <title>A peu d'obra · Mystery Cache</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="A peu d'obra, inici"><span class="brand-mark">⌂</span><span>A PEU D’OBRA<small>MYSTERY CACHE</small></span></a>
+    <span class="header-note">Un repte d’ull tècnic</span>
+  </header>
+
+  <main id="top" class="shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">PROJECTE · EXECUCIÓ · PRESSUPOST</p>
+        <h1>Seràs capaç de<br><em>tancar el pressupost?</em></h1>
+        <p class="intro">Tens una casa per construir i cinc decisions per prendre. Tria les solucions constructives, calcula el PEM i, si tot quadra, trobaràs les coordenades del tresor.</p>
+        <div class="hero-meta"><span>◷ 5 etapes</span><span>⌁ Dificultat tècnica</span><span>▦ Sense presses</span></div>
+      </div>
+      <div class="hero-art" aria-label="Il·lustració d'una casa en construcció">
+        <div class="sun"></div><div class="cloud cloud-one"></div><div class="cloud cloud-two"></div>
+        <div class="house-scene"><div class="roof"></div><div class="house-wall"><div class="window w1"></div><div class="window w2"></div><div class="door"></div></div><div class="side-wall"></div><div class="foundation"></div><div class="ground-line"></div></div>
+        <span class="art-label">OBRA EN CURS</span>
+      </div>
+    </section>
+
+    <section class="progress-wrap" aria-label="Progrés del repte">
+      <div class="progress-top"><span id="progress-label">ETAPA 1 DE 5</span><span id="progress-percent">0% completat</span></div>
+      <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
+      <div class="step-dots" id="step-dots"><span class="active">01</span><span>02</span><span>03</span><span>04</span><span>05</span></div>
+    </section>
+
+    <section class="game-layout">
+      <article class="stage-card" id="stage-card">
+        <div class="stage-heading"><div><p class="eyebrow" id="stage-kicker">ETAPA 01 · SOTA RASANT</p><h2 id="stage-title">Comencem pels fonaments</h2></div><span class="stage-number" id="stage-number">01</span></div>
+        <p class="stage-description" id="stage-description">Abans d’aixecar parets, cal decidir com transmetrem les càrregues al terreny. Quina solució triaries per a aquesta casa?</p>
+        <div class="illustration" id="illustration" aria-hidden="true"></div>
+        <div id="choices" class="choices" role="group" aria-label="Tria una solució constructiva"></div>
+        <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+        <div class="stage-actions"><button id="check-button" class="button primary" disabled>Comprova la resposta <span>→</span></button><button id="next-button" class="button primary hidden">Continua <span>→</span></button></div>
+      </article>
+
+      <aside class="side-card">
+        <div class="side-icon">⌁</div><p class="eyebrow">FULL D’OBRA</p><h3>Una decisió cada vegada.</h3><p>Observa les opcions, pensa com ho resoldries a l’obra i tria la resposta que encaixa amb l’enunciat.</p>
+        <div class="side-rule"></div><div class="mini-stat"><span>ETAPES SUPERADES</span><strong id="side-count">0 / 5</strong></div>
+        <div class="mini-stat"><span>PRESSUPOST</span><strong id="side-budget">Pendent</strong></div>
+        <p class="side-foot">No cal córrer. A l’obra, fer-ho bé a la primera també és avançar.</p>
+      </aside>
+    </section>
+
+    <section id="result-card" class="result-card hidden" aria-live="polite">
+      <div class="result-icon">✓</div><p class="eyebrow">PRESSUPOST VALIDAT</p><h2>Feina feta. Ja tens les coordenades!</h2><p>Has superat les cinc etapes i el PEM coincideix amb el pressupost previst.</p>
+      <div class="coordinate-box"><span>COORDENADES FINALS</span><strong id="coordinates">N 00° 00.000 E 000° 00.000</strong><button id="copy-coordinates" class="button secondary">Copia les coordenades</button></div>
+      <button id="restart-button" class="text-button">Torna a començar</button>
+    </section>
+
+    <footer><span> A PEU D’OBRA · MYSTERY CACHE</span><span>Un projecte entre plànols, obra i geocaching.</span></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
