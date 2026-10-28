@@ -1008,3 +1008,29 @@ footer span:first-child {
 footer {
   display: none !important;
 }
+
+/* Ajustar espai sota el logotip i eliminar el text superior */
+.topbar {
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
+}
+
+.eyebrow {
+  display: none !important;
+}
+
+/* Reduir l'espai abans del títol principal */
+.view {
+  padding-top: 20px;
+}
+
+@media (max-width: 680px) {
+  .topbar {
+    padding-top: 12px !important;
+    padding-bottom: 0 !important;
+  }
+
+  .view {
+    padding-top: 12px;
+  }
+}
