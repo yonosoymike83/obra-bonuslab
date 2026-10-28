@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="A peu d'obra: Mystery Cache de sistemes constructius i pressupost d'una casa.">
+  <title>A peu d'obra · Mystery Cache</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" id="home-link" aria-label="Torna al pressupost">
+      <img class="brand-logo" src="logo.png" alt="Logotip d’A peu d’obra">
+    </a>
+  </header>
+
+  <main class="shell">
+    <section id="summary-view" class="view">
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">FULL D’OBRA · MISSIÓ EN CURS</p>
+          <h1>Pressupost de la casa</h1>
+          <p class="subheading">Tria una solució per a cada partida. Quan ho tinguis tot a punt, envia el pressupost al client.</p>
+        </div>
+        <div class="progress-ring" aria-label="Progrés"><strong id="progress-count">0/5</strong><span>PARTIDES</span></div>
+      </div>
+
+      <div class="progress-track" aria-label="Progrés del pressupost"><div id="progress-fill" class="progress-fill"></div></div>
+
+      <section id="summary-list" class="summary-list" aria-label="Partides del pressupost"></section>
+
+      <section class="submit-panel">
+        <div class="submit-copy"><span class="submit-icon" aria-hidden="true">↗</span><div><h2>Tot a punt?</h2><p id="submit-hint">Completa les partides per poder enviar el pressupost.</p></div></div>
+        <button id="submit-button" class="button primary" disabled>Enviar al client <span aria-hidden="true">→</span></button>
+      </section>
+      <p class="privacy-note">Les partides es revisaran totes al final. Els ticks indiquen que has triat una opció, no que sigui correcta.</p>
+    </section>
+
+    <section id="chapter-view" class="view hidden" aria-live="polite">
+      <button id="back-button" class="back-button"><span aria-hidden="true">←</span> Tornar al pressupost</button>
+      <div class="chapter-heading">
+        <div><p class="eyebrow" id="chapter-kicker">PARTIDA 01</p><h1 id="chapter-title">Fonamentació</h1><p id="chapter-question" class="subheading">Quin sistema constructiu triaries?</p></div>
+        <span id="chapter-number" class="chapter-number">01</span>
+      </div>
+      <div id="chapter-visual" class="chapter-visual" aria-label="Il·lustració del sistema constructiu"></div>
+      <div id="chapter-options" class="option-grid" role="group" aria-label="Opcions de sistema constructiu"></div>
+      <div class="chapter-footer"><p id="chapter-note">Tria l'opció que s'ajusta al projecte.</p><button id="save-choice" class="button primary" disabled>Afegir al pressupost <span aria-hidden="true">✓</span></button></div>
+    </section>
+
+    <section id="result-view" class="view result-view hidden" aria-live="polite">
+      <div class="result-symbol">✓</div>
+      <p class="eyebrow">PRESSUPOST VALIDAT</p>
+      <h1>Feina feta!</h1>
+      <p class="result-intro">Totes les partides són correctes. El client ha acceptat el pressupost i el tresor ja és a prop.</p>
+      <div class="coordinate-card"><span>COORDENADES FINALS</span><strong id="coordinates">N 00° 00.000 E 000° 00.000</strong><button id="copy-coordinates" class="button secondary">Copia les coordenades</button></div>
+      <button id="restart-button" class="text-button">Torna a començar</button>
+    </section>
+
+    <section id="review-view" class="view review-view hidden" aria-live="polite">
+      <div class="review-symbol">!</div><p class="eyebrow">REVISIÓ DEL PRESSUPOST</p><h1>Encara hi ha alguna cosa per ajustar</h1>
+      <p class="subheading">El pressupost no ha passat la revisió. Hem marcat les partides que cal comprovar; obre-les i canvia la solució.</p>
+      <div id="review-list" class="review-list"></div>
+      <button id="review-home" class="button secondary">Tornar al pressupost</button>
+    </section>
+
+    <footer><span>A PEU D’OBRA · MYSTERY CACHE</span><span>Un projecte entre plànols, obra i geocaching.</span></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
