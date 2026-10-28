@@ -51,12 +51,9 @@ body {
   font-size: 14px;
 }
 .brand-logo {
-  display: block;
-  width: clamp(220px, 34vw, 340px);
-  height: auto;
-  max-height: none;
-  object-fit: contain;
-  margin: 0 auto;
+  width: 250px;
+  max-width: 90%;
+  margin-bottom: 10px;
 }
 .brand-mark {
   width: 42px;
