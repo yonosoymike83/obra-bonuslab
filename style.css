@@ -1040,3 +1040,8 @@ footer {
 #submit-budget .button-arrow {
   display: none !important;
 }
+
+/* Treure la fletxa del botó «Enviar al client» */
+#submit-button span {
+  display: none !important;
+}
