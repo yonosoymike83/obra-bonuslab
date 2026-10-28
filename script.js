@@ -82,10 +82,21 @@ const $ = id => document.getElementById(id);
 const money = n => new Intl.NumberFormat('ca-ES',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);
 const expectedPEM = CONFIG.houseAreaM2 * CONFIG.pemPerM2;
 let currentStage = 0;
-let selections = {}; // choices are held until final review
+let selections = {};
 let wrongStages = new Set();
 
 const stageNames = CONFIG.stages.map(s=>s.title);
+
+/* Miniatures de la pàgina principal: fitxers dins de /images */
+const summaryImages = {
+  foundation: 'images/01-fon-mini.png',
+  structure: 'images/02-estr-mini.png',
+  roof: 'images/03-cob-mini.png',
+  facade: 'images/04-fac-mini.png',
+  installations: 'images/05-inst-mini.png',
+  exterior: 'images/06-tanc-mini.png',
+  budget: 'images/07-press-mini.png'
+};
 
 function svgWrap(content, label='') {
   return `<svg viewBox="0 0 360 210" role="img" aria-label="${label}" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="concreteShade" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e0e0e0"/><stop offset="1" stop-color="#777"/></linearGradient><linearGradient id="soilShade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#66584a"/><stop offset="1" stop-color="#302a25"/></linearGradient></defs>${content}</svg>`;
@@ -123,9 +134,11 @@ function artSvg(type, variant='main') {
   else if(type==='structure') content=structure[variant==='main'?'joists':variant]||structure.joists;
   else if(type==='roof') content=roof[variant==='main'?'tiles':variant]||roof.tiles;
   else if(type==='facade') content=facade[variant==='main'?'sate':variant]||facade.sate;
+  else if(type==='installations') content=`<path d="M45 150 L180 190 L315 150 L180 110Z" fill="#454545" stroke="#888"/><path d="M70 105 L180 137 L290 105 L180 73Z" fill="#bbb" stroke="#eee"/><path d="M70 105 V145 L180 177 V137Z" fill="#777" stroke="#aaa"/><path d="M180 137 V177 L290 145 V105Z" fill="#555" stroke="#888"/><path d="M92 111 L92 143 L180 169 L180 137 M115 118 L115 150 M138 125 L138 157 M161 132 L161 164" stroke="#e0c16c" stroke-width="3" fill="none"/><rect x="211" y="87" width="35" height="43" rx="3" fill="#dedede" stroke="#fff"/><path d="M220 96 h17 M220 104 h17 M220 112 h17" stroke="#555" stroke-width="2"/>`;
+  else if(type==='exterior') content=`<path d="M75 70 L180 38 L285 70 L180 102Z" fill="#bbb" stroke="#eee"/><path d="M75 70 V153 L180 185 V102Z" fill="#777" stroke="#aaa"/><path d="M180 102 V185 L285 153 V70Z" fill="#555" stroke="#888"/><path d="M111 81 V143 L163 159 V97Z" fill="#b9d8e5" stroke="#d8c58d" stroke-width="8"/><path d="M137 89 V151" stroke="#f4f4f4" stroke-width="2"/><path d="M200 110 V166 L252 150 V94Z" fill="#b9d8e5" stroke="#d8c58d" stroke-width="8"/><path d="M226 102 V158" stroke="#f4f4f4" stroke-width="2"/>`;
   else content=`<path d="M80 135 L180 170 L280 135 L180 100Z" fill="#777" stroke="#ddd"/><path d="M105 95 L180 117 L255 95 L180 73Z" fill="#bbb" stroke="#eee"/><path d="M105 95 V125 L180 147 V117Z" fill="#666"/><path d="M180 117 V147 L255 125 V95Z" fill="#888"/><path d="M105 95 L180 73 L255 95" stroke="#fff" fill="none" stroke-width="2"/>`;
 
-  const labels = type==='foundation' ? '<text x="22" y="24" class="svg-label">TERRENY</text><path d="M64 28 L111 112" class="svg-line"/><text x="245" y="30" class="svg-label">FORMIGÓ</text><path d="M271 35 L239 85" class="svg-line"/><text x="230" y="190" class="svg-label">ARMADURA</text>' : type==='structure' ? '<text x="22" y="24" class="svg-label">FORJAT</text><path d="M63 28 L117 99" class="svg-line"/><text x="252" y="30" class="svg-label">BIGUETES</text><path d="M278 36 L235 121" class="svg-line"/>' : type==='roof' ? '<text x="20" y="25" class="svg-label">TEULA</text><path d="M54 28 L105 98" class="svg-line"/><text x="250" y="26" class="svg-label">SUPORT</text><path d="M270 30 L230 90" class="svg-line"/>' : type==='facade' ? '<text x="18" y="24" class="svg-label">AÏLLAMENT</text><path d="M80 28 L124 112" class="svg-line"/><text x="252" y="24" class="svg-label">ACABAT</text><path d="M278 30 L251 94" class="svg-line"/>' : '<text x="22" y="25" class="svg-label">PEM</text><text x="250" y="25" class="svg-label">€/m²</text>';
+  const labels = type==='foundation' ? '<text x="22" y="24" class="svg-label">TERRENY</text><path d="M64 28 L111 112" class="svg-line"/><text x="245" y="30" class="svg-label">FORMIGÓ</text><path d="M271 35 L239 85" class="svg-line"/><text x="230" y="190" class="svg-label">ARMADURA</text>' : type==='structure' ? '<text x="22" y="24" class="svg-label">FORJAT</text><path d="M63 28 L117 99" class="svg-line"/><text x="252" y="30" class="svg-label">BIGUETES</text><path d="M278 36 L235 121" class="svg-line"/>' : type==='roof' ? '<text x="20" y="25" class="svg-label">TEULA</text><path d="M54 28 L105 98" class="svg-line"/><text x="250" y="26" class="svg-label">SUPORT</text><path d="M270 30 L230 90" class="svg-line"/>' : type==='facade' ? '<text x="18" y="24" class="svg-label">AÏLLAMENT</text><path d="M80 28 L124 112" class="svg-line"/><text x="252" y="24" class="svg-label">ACABAT</text><path d="M278 30 L251 94" class="svg-line"/>' : type==='installations' ? '<text x="18" y="24" class="svg-label">CABLEJAT</text><path d="M65 28 L117 121" class="svg-line"/><text x="246" y="24" class="svg-label">QUADRE</text><path d="M270 30 L230 90" class="svg-line"/>' : type==='exterior' ? '<text x="18" y="24" class="svg-label">MARC</text><path d="M50 28 L117 105" class="svg-line"/><text x="238" y="24" class="svg-label">VIDRE DOBLE</text><path d="M280 30 L230 104" class="svg-line"/>' : '<text x="22" y="25" class="svg-label">PEM</text><text x="250" y="25" class="svg-label">€/m²</text>';
 
   return svgWrap(`${content}${labels}`,`Il·lustració 3D esquemàtica de ${type}`);
 }
@@ -136,28 +149,51 @@ function stageArt(stage, variant='main') {
 }
 
 function renderSummary(){
-  const list=$('summary-list'); list.innerHTML='';
+  const list=$('summary-list');
+  list.innerHTML='';
+
   CONFIG.stages.forEach((stage,i)=>{
     const choiceIndex=selections[i];
-    const item=document.createElement('button'); item.type='button'; item.className='summary-item';
+    const item=document.createElement('button');
+    item.type='button';
+    item.className='summary-item';
+
     const status=wrongStages.has(i)?'wrong':choiceIndex!==undefined?'done':'';
     const statusText=status==='wrong'?'!':status==='done'?'✓':'○';
-    const choiceLabel=stage.budget?(choiceIndex!==undefined?money(Number(choiceIndex)):'Calcula el PEM'):choiceIndex!==undefined?stage.choices[choiceIndex].title:'Tria un sistema constructiu';
-    item.innerHTML=`<span class="summary-art">${stageArt(stage)}</span><span class="summary-info"><strong>${stage.title}</strong><small>${choiceLabel}</small></span><span class="summary-status ${status}">${statusText}</span>`;
-    item.addEventListener('click',()=>openStage(i)); list.appendChild(item);
+    const choiceLabel=stage.budget
+      ? (choiceIndex!==undefined?money(Number(choiceIndex)):'Calcula el PEM')
+      : choiceIndex!==undefined
+        ? stage.choices[choiceIndex].title
+        : 'Tria un sistema constructiu';
+
+    item.innerHTML=`<span class="summary-art"><img src="${summaryImages[stage.id]}" alt="" loading="lazy"></span><span class="summary-info"><strong>${stage.title}</strong><small>${choiceLabel}</small></span><span class="summary-status ${status}">${statusText}</span>`;
+
+    item.addEventListener('click',()=>openStage(i));
+    list.appendChild(item);
   });
+
   const count=CONFIG.stages.filter((_,i)=>selections[i]!==undefined).length;
   $('progress-count').textContent=`${count}/${CONFIG.stages.length}`;
   $('progress-fill').style.width=`${count/CONFIG.stages.length*100}%`;
   $('submit-button').disabled=count!==CONFIG.stages.length;
-  $('submit-hint').textContent=count===CONFIG.stages.length?'Totes les partides estan emplenades. Ja pots enviar el pressupost.':`Et queden ${CONFIG.stages.length-count} ${CONFIG.stages.length-count===1?'partida':'partides'} per completar.`;
+  $('submit-hint').textContent=count===CONFIG.stages.length
+    ? 'Totes les partides estan emplenades. Ja pots enviar el pressupost.'
+    : `Et queden ${CONFIG.stages.length-count} ${CONFIG.stages.length-count===1?'partida':'partides'} per completar.`;
 }
 
 function openStage(index){
-  currentStage=index; const stage=CONFIG.stages[index];
-  $('summary-view').classList.add('hidden'); $('result-view').classList.add('hidden'); $('review-view').classList.add('hidden'); $('chapter-view').classList.remove('hidden');
+  currentStage=index;
+  const stage=CONFIG.stages[index];
+
+  $('summary-view').classList.add('hidden');
+  $('result-view').classList.add('hidden');
+  $('review-view').classList.add('hidden');
+  $('chapter-view').classList.remove('hidden');
+
   $('chapter-kicker').textContent=`PARTIDA ${String(index+1).padStart(2,'0')} · ${stage.subtitle.toUpperCase()}`;
-  $('chapter-title').textContent=stage.title; $('chapter-question').textContent=stage.question; $('chapter-number').textContent=String(index+1).padStart(2,'0');
+  $('chapter-title').textContent=stage.title;
+  $('chapter-question').textContent=stage.question;
+  $('chapter-number').textContent=String(index+1).padStart(2,'0');
   $('chapter-visual').innerHTML=stageArt(stage);
   $('chapter-note').textContent=stage.description;
   $('chapter-options').innerHTML='';
@@ -168,6 +204,7 @@ function openStage(index){
     box.className='budget-fields';
     box.innerHTML=`<label for="pem-input">Pressupost d’execució material (€)</label><input id="pem-input" type="number" inputmode="numeric" min="0" step="1" placeholder="Ex. 144000" value="${selections[index]??''}"><p class="budget-hint">Superfície: <strong>${CONFIG.houseAreaM2} m²</strong> · Mòdul orientatiu: <strong>${money(CONFIG.pemPerM2)}/m²</strong></p>`;
     $('chapter-options').appendChild(box);
+
     const input=$('pem-input');
     $('save-choice').disabled=!input.value.trim();
     input.addEventListener('input',()=>{
@@ -179,6 +216,7 @@ function openStage(index){
       button.type='button';
       button.className='option-card'+(selections[index]===j?' selected':'');
       button.innerHTML=`<span class="option-image">${stageArt(stage,choice.art)}</span><span class="option-copy"><strong>${choice.title}</strong><p>${choice.detail}</p><span class="option-select"><span class="option-radio"></span>${selections[index]===j?'SELECCIONAT':'SELECCIONA'}</span></span>`;
+
       button.addEventListener('click',()=>{
         document.querySelectorAll('.option-card').forEach(el=>el.classList.remove('selected'));
         button.classList.add('selected');
@@ -186,20 +224,25 @@ function openStage(index){
         selections[index]=j;
         $('save-choice').disabled=false;
       });
+
       $('chapter-options').appendChild(button);
     });
+
     $('save-choice').disabled=selections[index]===undefined;
   }
+
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function saveChoice(){
   const stage=CONFIG.stages[currentStage];
+
   if(stage.budget){
     const input=$('pem-input');
     if(!input||!input.value.trim()||Number(input.value)<0)return;
     selections[currentStage]=Number(input.value);
   }
+
   wrongStages.delete(currentStage);
   $('chapter-view').classList.add('hidden');
   $('summary-view').classList.remove('hidden');
@@ -209,6 +252,7 @@ function saveChoice(){
 
 function submitBudget(){
   wrongStages=new Set();
+
   CONFIG.stages.forEach((stage,i)=>{
     if(stage.budget){
       if(Math.abs(Number(selections[i])-expectedPEM)>CONFIG.pemToleranceEuros)wrongStages.add(i);
@@ -234,6 +278,7 @@ function submitBudget(){
 
   const list=$('review-list');
   list.innerHTML='';
+
   [...wrongStages].forEach(i=>{
     const row=document.createElement('div');
     row.className='review-row';
@@ -241,6 +286,7 @@ function submitBudget(){
     row.querySelector('button').addEventListener('click',()=>openStage(i));
     list.appendChild(row);
   });
+
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -259,7 +305,10 @@ function restart(){
   goHome();
 }
 
-$('home-link').addEventListener('click',e=>{e.preventDefault();goHome();});
+$('home-link').addEventListener('click',e=>{
+  e.preventDefault();
+  goHome();
+});
 $('back-button').addEventListener('click',goHome);
 $('save-choice').addEventListener('click',saveChoice);
 $('submit-button').addEventListener('click',submitBudget);
