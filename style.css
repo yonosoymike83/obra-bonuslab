@@ -1002,3 +1002,9 @@ footer span:first-child {
     transition: none !important;
   }
 }
+
+/* Eliminar textos sobrants i peu de pàgina */
+.privacy-note,
+footer {
+  display: none !important;
+}
