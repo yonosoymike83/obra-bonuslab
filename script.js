@@ -6,6 +6,7 @@ const CONFIG = {
   stages: [
     {
       id: 'foundation',
+      image: 'images/fonamentacio.png',
       title: 'Fonamentació',
       subtitle: 'Sota rasant',
       question: 'Quin sistema de fonamentació encaixa amb una casa amb murs de càrrega i un terreny adequat?',
@@ -33,6 +34,7 @@ const CONFIG = {
     },
     {
       id: 'structure',
+      image: 'images/estructura.png',
       title: 'Estructura',
       subtitle: 'Forjats i càrregues',
       question: 'En una solució tradicional amb murs de càrrega, quin sistema de forjat és coherent amb el plantejament?',
@@ -60,6 +62,7 @@ const CONFIG = {
     },
     {
       id: 'roof',
+      image: 'images/coberta.png',
       title: 'Coberta',
       subtitle: 'Protecció superior',
       question: 'La casa tindrà una coberta inclinada tradicional. Quin material és adequat com a cobertura?',
@@ -87,6 +90,7 @@ const CONFIG = {
     },
     {
       id: 'facade',
+      image: 'images/facana.png',
       title: 'Façana',
       subtitle: 'Tancament i aïllament',
       question: 'Quina solució combina tancament ceràmic, aïllament tèrmic exterior i acabat continu?',
@@ -114,60 +118,57 @@ const CONFIG = {
     },
     {
       id: 'installations',
+      image: 'images/instalacions.png',
       title: 'Instal·lacions',
-      subtitle: 'Serveis de l’habitatge',
-      question: 'Quina solució correspon a una instal·lació elèctrica fixa d’un habitatge?',
-      description: 'Les instal·lacions aporten els serveis necessaris a l’habitatge. Les canalitzacions i proteccions s’han de definir segons el projecte i la normativa aplicable.',
+      subtitle: 'Producció d’aigua calenta i climatització',
+      question: 'Quin sistema de producció d’aigua calenta i climatització escolliries?',
+      description: 'Tria una de les tres solucions d’instal·lacions representades a la imatge.',
       correct: 0,
-      art: 'structure',
+      art: 'installations',
       choices: [
         {
-          title: 'Conductors protegits en tubs',
-          detail: 'Cablejat instal·lat en canalitzacions adequades, amb proteccions al quadre elèctric.',
-          art: 'joists'
+          title: 'Caldera de gas',
+          detail: 'Sistema de generació de calor mitjançant una caldera de gas.'
         },
         {
-          title: 'Cables solts sense protecció',
-          detail: 'No és una solució correcta per a una instal·lació fixa segura.',
-          art: 'partition'
+          title: 'Aerotèrmia',
+          detail: 'Bomba de calor que aprofita l’energia de l’aire exterior.'
         },
         {
-          title: 'Canonades d’aigua com a conductes',
-          detail: 'Les canonades de fontaneria no substitueixen les canalitzacions elèctriques.',
-          art: 'ceiling'
+          title: 'Dipòsit acumulador, escalfador i panells solars',
+          detail: 'Sistema amb acumulació d’aigua calenta i captació solar.'
         }
       ],
-      success: 'La instal·lació elèctrica s’ha d’executar amb conductors, canalitzacions i proteccions adequats, segons el projecte i el reglament aplicable.'
+      success: 'La solució d’instal·lacions seleccionada correspon al sistema previst per a l’habitatge.'
     },
     {
       id: 'exterior',
+      image: 'images/tancaments.png',
       title: 'Tancaments exteriors',
       subtitle: 'Finestres i portes',
-      question: 'Quina fusteria exterior ajuda a limitar les pèrdues tèrmiques de l’habitatge?',
-      description: 'Els tancaments exteriors, com finestres i balconeres, han de contribuir a l’estanquitat, l’aïllament tèrmic i el confort acústic.',
+      question: 'Quin tipus de fusteria exterior triaries?',
+      description: 'Escull el material de les finestres i portes exteriors de l’habitatge.',
       correct: 0,
-      art: 'facade',
+      art: 'exterior',
       choices: [
         {
           title: 'Alumini amb trencament de pont tèrmic',
-          detail: 'Marc amb separació tèrmica i vidre doble adequat a les prestacions del projecte.',
-          art: 'sate'
+          detail: 'Perfils d’alumini amb separació tèrmica entre les cares exterior i interior.'
         },
         {
-          title: 'Alumini sense trencament tèrmic',
-          detail: 'El marc pot facilitar més intercanvi de calor entre exterior i interior.',
-          art: 'block'
+          title: 'PVC',
+          detail: 'Perfils de PVC amb cambres interiors i prestacions d’aïllament tèrmic.'
         },
         {
-          title: 'Porta interior buida',
-          detail: 'No és un tancament adequat per a una obertura exposada a la intempèrie.',
-          art: 'partition'
+          title: 'Fusta',
+          detail: 'Fusteria de fusta amb acabat i manteniment adequats per a ús exterior.'
         }
       ],
-      success: 'Una fusteria amb trencament de pont tèrmic i vidre adequat pot millorar les prestacions de l’obertura. Cal seleccionar-la segons el projecte.'
+      success: 'La fusteria escollida s’ha de definir segons les prestacions tèrmiques, acústiques i de durabilitat del projecte.'
     },
     {
       id: 'budget',
+      image: 'images/pressupost.png',
       title: 'Pressupost final',
       subtitle: 'PEM de l’obra',
       question: 'Calcula el pressupost d’execució material amb la superfície i el mòdul indicats.',
@@ -457,9 +458,8 @@ function artSvg(type, variant = 'main') {
   return svgWrap(content + labels, `Il·lustració 3D esquemàtica de ${type}`);
 }
 
-function stageArt(stage, variant = 'main') {
-  if (stage.id === 'budget') return artSvg('budget', 'main');
-  return artSvg(stage.art, variant);
+function stageArt(stage) {
+  return `<img class="chapter-main-image" src="${stage.image}" alt="${stage.title}" loading="eager">`;
 }
 
 /* Mostra les set partides amb les miniatures del resum. */
@@ -574,7 +574,6 @@ function openStage(index) {
         'option-card' + (selections[index] === j ? ' selected' : '');
 
       button.innerHTML = `
-        <span class="option-image">${stageArt(stage, choice.art)}</span>
         <span class="option-copy">
           <strong>${choice.title}</strong>
           <p>${choice.detail}</p>
