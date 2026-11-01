@@ -894,3 +894,22 @@ footer span:first-child {
     display: block;
   }
 }
+
+/* Ajust de les imatges grans en ordinador: mostrar-les completes sense retallar.
+   La configuració específica de mòbil es manté sense canvis. */
+@media (min-width: 681px) {
+  .chapter-visual {
+    height: auto;
+    min-height: 0;
+    padding: 10px;
+  }
+
+  .chapter-main-image {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    max-height: 460px;
+    object-fit: contain;
+    object-position: center;
+  }
+}
