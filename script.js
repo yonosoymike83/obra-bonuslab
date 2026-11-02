@@ -67,7 +67,7 @@ const CONFIG = {
       subtitle: 'Protecció superior',
       question: 'Quin tipus de coberta vols incorporar a l’habitatge?',
       description: 'La coberta és l’element constructiu que protegeix la part superior de l’edifici i en garanteix l’estanquitat i l’aïllament.',
-      correct: 0,
+      correct: 1,
       art: 'roof',
       choices: [
         {
@@ -95,7 +95,7 @@ const CONFIG = {
       subtitle: 'Tancament i aïllament',
       question: 'Quin sistema de façana escolliries per a l’habitatge?',
       description: 'La façana és l’element constructiu que tanca i protegeix l’edifici de l’exterior i proporciona aïllament tèrmic i acústic.',
-      correct: 0,
+      correct: 3,
       art: 'facade',
       choices: [
         {
@@ -123,7 +123,7 @@ const CONFIG = {
       subtitle: 'Producció d’aigua calenta i climatització',
       question: 'Quin sistema de producció d’aigua calenta i calefacció vols instal·lar?',
       description: 'Existeixen diferents equips i instal·lacions que generen aigua calenta i calor per climatitzar els espais interiors de l’habitatge.',
-      correct: 0,
+      correct: [1, 2],
       art: 'installations',
       choices: [
         {
@@ -148,7 +148,7 @@ const CONFIG = {
       subtitle: 'Finestres',
       question: 'Quin material vols fer servir per als tancaments de l’habitatge?',
       description: 'Els tancaments exteriors són els elements que tanquen els buits de les façanes i les cobertes, com ara finestres i portes.',
-      correct: 0,
+      correct: [0, 1, 2],
       art: 'exterior',
       choices: [
         {
