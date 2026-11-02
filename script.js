@@ -9,14 +9,14 @@ const CONFIG = {
       image: 'images/fonamentacio.png',
       title: 'Fonamentació',
       subtitle: 'Sota rasant',
-      question: 'Quin sistema de fonamentació encaixa per una habitatge unifamiliar en un terreny amb bona capacitat portant?',
+      question: 'Quin sistema de fonamentació és adequat per a un habitatge unifamiliar en un terreny amb bona capacitat portant?',
       description: 'La fonamentació transmet les càrregues de l’edificació al terreny.',
       correct: 0,
       art: 'foundation',
       choices: [
         {
           title: 'Sabates corregudes',
-          detail: 'Element continu de formigó armat sota murs de càrrega.',
+          detail: 'Element continu, habitualment de formigó armat, situat sota els murs de càrrega.',
           art: 'strip'
         },
         {
@@ -26,7 +26,7 @@ const CONFIG = {
         },
         {
           title: 'Llosa de fonamentació',
-          detail: 'Element de fonamentació que ocupa una gran part o tota la superfície de l'edificació.',
+          detail: 'Element de fonamentació que ocupa una gran part o tota la superfície de l’edificació.',
           art: 'raft'
         }
       ],
@@ -38,7 +38,7 @@ const CONFIG = {
       title: 'Estructura',
       subtitle: 'Forjats i càrregues',
       question: 'Quin sistema estructural s’adapta millor a la solució que vols per a l’habitatge?',
-      description: 'Els forjats son elements estructurals horitzontals que transmeten les càrregues als elements verticals, com murs i pilars.',
+      description: 'Els forjats són elements estructurals horitzontals que transmeten les càrregues als elements verticals, com ara murs i pilars.',
       correct: 0,
       art: 'structure',
       choices: [
@@ -49,7 +49,7 @@ const CONFIG = {
         },
         {
           title: 'Forjat reticular amb pilars de formigó armat',
-          detail: 'Element de formigó armat amb retícula de nervis en dues direccions que distribueixen las càrregues cap als pilars.',
+          detail: 'Element de formigó armat amb retícula de nervis en dues direccions que distribueixen les càrregues cap als pilars.',
           art: 'partition'
         },
         {
@@ -58,7 +58,7 @@ const CONFIG = {
           art: 'ceiling'
         }
       ],
-      success: 'El forjat unidireccional amb parets de càrrega és una solució habitual en habitatges unifamiliars de dimensions reduides i amb sabates corregudes de fonamentació.'
+      success: 'El forjat unidireccional amb parets de càrrega és una solució habitual en habitatges unifamiliars de dimensions reduïdes i amb sabates corregudes de fonamentació.'
     },
     {
       id: 'roof',
@@ -66,13 +66,13 @@ const CONFIG = {
       title: 'Coberta',
       subtitle: 'Protecció superior',
       question: 'Quin tipus de coberta vols incorporar a l’habitatge?',
-      description: 'La coberta es l'element constructiu que protegeix la part superior de l'edifci i garanteix l'estanquitat i l'aïllament.',
+      description: 'La coberta és l’element constructiu que protegeix la part superior de l’edifici i en garanteix l’estanquitat i l’aïllament.',
       correct: 0,
       art: 'roof',
       choices: [
         {
           title: 'Coberta inclinada amb teula àrab',
-          detail: 'Sistema de cobriment en pendent, acabat amb teula ceràmica que evacua l'aigua de la pluja i preotegeix l'edifici.',
+          detail: 'Sistema de cobriment en pendent, acabat amb teula ceràmica que evacua l’aigua de la pluja i protegeix l’edifici.',
           art: 'tiles'
         },
         {
@@ -94,13 +94,13 @@ const CONFIG = {
       title: 'Façana',
       subtitle: 'Tancament i aïllament',
       question: 'Quin sistema de façana escolliries per a l’habitatge?',
-      description: 'La façana es l'element constructiu que tanca i protegeix l'edifici de l'exterior, proporcionant aïllament tèrmic i acústic.',
+      description: 'La façana és l’element constructiu que tanca i protegeix l’edifici de l’exterior i proporciona aïllament tèrmic i acústic.',
       correct: 0,
       art: 'facade',
       choices: [
         {
           title: 'Termoarcilla + SATE + morter monocapa',
-          detail: 'Full de termoarcilla amb aïllament tèrmic per l'exterior i acabat de morter monocapa.',
+          detail: 'Full de termoargila amb aïllament tèrmic per l’exterior i acabat de morter monocapa.',
           art: 'sate'
         },
         {
@@ -114,32 +114,32 @@ const CONFIG = {
           art: 'partition'
         }
       ],
-      success: 'El SATE incorpora l’aïllament per la cara exterior del tancament, millora l'eficiència energètica de l'edifici i redueix els ponts tèrmics.'
+      success: 'El SATE incorpora l’aïllament per la cara exterior del tancament, millora l’eficiència energètica de l’edifici i redueix els ponts tèrmics.'
     },
     {
       id: 'installations',
       image: 'images/instalacions.png',
       title: 'Instal·lacions',
       subtitle: 'Producció d’aigua calenta i climatització',
-      question: 'Quin sistema de producció de aigua calenta i calefecció vols instal·lar?',
-      description: 'Existeixen diferents equips i instal·lacions que generen aigua calenta i calor per climatitzar els espais interiors de l'habitatge.',
+      question: 'Quin sistema de producció d’aigua calenta i calefacció vols instal·lar?',
+      description: 'Existeixen diferents equips i instal·lacions que generen aigua calenta i calor per climatitzar els espais interiors de l’habitatge.',
       correct: 0,
       art: 'installations',
       choices: [
         {
           title: 'Caldera de gas',
-          detail: 'Caldera mural que utilitza gas natural per escalfar l'aigua que circula pels radiadors i produir ACS.'
+          detail: 'Caldera mural que utilitza gas natural per escalfar l’aigua que circula pels radiadors i produir aigua calenta sanitària (ACS).'
         },
         {
           title: 'Aerotèrmia',
-          detail: 'Bomba de calor aire-aigua per escalfar l'aigua que circula per el terra radiant i produir ACS.'
+          detail: 'Bomba de calor aire-aigua que escalfa l’aigua que circula pel terra radiant i produeix aigua calenta sanitària (ACS).'
         },
         {
           title: 'Dipòsit acumulador i panells solars',
-          detail: 'Sistema que aprofita l'energia solar per escalfar aigua, que s'emmagatzema en un dipòsit acumulador per la producció de ACS.'
+          detail: 'Sistema que aprofita l’energia solar per escalfar l’aigua, que s’emmagatzema en un dipòsit acumulador per produir aigua calenta sanitària (ACS).'
         }
       ],
-      success: 'La instal·lació de caldera de gas no es adequada ja que no compleix les actuals exigències del Codi Técnic de l'Edificació en eficiència energètica i ús d'energies renovables.'
+      success: 'La instal·lació amb caldera de gas no és adequada en aquest cas; cal tenir en compte les exigències aplicables del Codi tècnic de l’edificació en matèria d’eficiència energètica i d’ús d’energies renovables.'
     },
     {
       id: 'exterior',
@@ -147,7 +147,7 @@ const CONFIG = {
       title: 'Tancaments exteriors',
       subtitle: 'Finestres',
       question: 'Quin material vols fer servir per als tancaments de l'habitatge?',
-      description: 'Els tancaments exteriors son els elements que tanquen els buits de façanes i cobertes, com finestres i portes.',
+      description: 'Els tancaments exteriors són els elements que tanquen els buits de les façanes i les cobertes, com ara finestres i portes.',
       correct: 0,
       art: 'exterior',
       choices: [
@@ -164,7 +164,7 @@ const CONFIG = {
           detail: 'Finestres amb perfil de fusta natural o laminada.'
         }
       ],
-      success: 'Les tres opcions de fusteria exterior són solucions vàlides i poden oferir un bon aïllament.'
+      success: 'Les tres opcions de fusteria exterior són solucions vàlides i poden oferir un bon aïllament, segons les prestacions dels perfils i dels vidres.'
     },
     {
       id: 'budget',
@@ -172,7 +172,7 @@ const CONFIG = {
       title: 'Pressupost final',
       subtitle: 'PEM de l’obra',
       question: 'Calcula el pressupost d’execució material amb la superfície i el mòdul indicats.',
-      description: 'Multiplica la superfície construïda pel mòdul orientatiu de PEM per metre quadrat.',
+      description: 'Multiplica la superfície construïda pel mòdul orientatiu del PEM per metre quadrat.',
       correct: 'budget',
       art: 'budget',
       budget: true,
