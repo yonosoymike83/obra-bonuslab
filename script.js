@@ -20,8 +20,8 @@ const CONFIG = {
           art: 'strip'
         },
         {
-          title: 'Sabates aïllades',
-          detail: 'Suports puntuals habituals sota pilars.',
+          title: 'Micropilots',
+          detail: 'Elements de fonamentació profunda que transmeten les càrregues a estrats resistents del terreny.',
           art: 'isolated'
         },
         {
@@ -37,24 +37,24 @@ const CONFIG = {
       image: 'images/estructura.png',
       title: 'Estructura',
       subtitle: 'Forjats i càrregues',
-      question: 'En una solució tradicional amb murs de càrrega, quin sistema de forjat és coherent amb el plantejament?',
-      description: 'El forjat recull les càrregues dels pisos i les transmet als elements de suport.',
+      question: 'Quin sistema estructural s’adapta millor a la solució que vols per a l’habitatge?',
+      description: 'La imatge compara tres sistemes: forjat unidireccional amb parets de càrrega, forjat reticular amb pilars de formigó armat i panells sandvitx sobre bigues de fusta.',
       correct: 0,
       art: 'structure',
       choices: [
         {
-          title: 'Forjat unidireccional',
-          detail: 'Biguetes i entrevigat que treballen principalment en una direcció.',
+          title: 'Forjat unidireccional amb parets de càrrega',
+          detail: 'Biguetes i revoltons ceràmics amb capa de compressió, recolzats sobre parets de fàbrica.',
           art: 'joists'
         },
         {
-          title: 'Envà de guix laminat',
-          detail: 'Divisió interior que no fa la funció del forjat.',
+          title: 'Forjat reticular amb pilars de formigó armat',
+          detail: 'Llosa de formigó amb retícula de nervis i cassetons, sostinguda per pilars.',
           art: 'partition'
         },
         {
-          title: 'Fals sostre registrable',
-          detail: 'Acabat interior suspès, no estructura del pis.',
+          title: 'Panells sandvitx sobre bigues de fusta',
+          detail: 'Estructura de bigues de fusta que suporta panells amb nucli aïllant.',
           art: 'ceiling'
         }
       ],
@@ -65,24 +65,24 @@ const CONFIG = {
       image: 'images/coberta.png',
       title: 'Coberta',
       subtitle: 'Protecció superior',
-      question: 'La casa tindrà una coberta inclinada tradicional. Quin material és adequat com a cobertura?',
-      description: 'La coberta protegeix l’edifici de la pluja i evacua l’aigua cap als punts de recollida.',
+      question: 'Quin tipus de coberta vols incorporar a l’habitatge?',
+      description: 'La imatge mostra tres solucions: coberta inclinada amb teula àrab, coberta plana amb grava i coberta tradicional a la catalana.',
       correct: 0,
       art: 'roof',
       choices: [
         {
-          title: 'Teula àrab',
-          detail: 'Peces ceràmiques corbes col·locades sobre el suport i les capes previstes.',
+          title: 'Coberta inclinada amb teula àrab',
+          detail: 'Acabat de teula ceràmica corba sobre estructura i capes de suport.',
           art: 'tiles'
         },
         {
-          title: 'Parquet de fusta',
-          detail: 'Paviment d’acabat per a interiors.',
+          title: 'Coberta plana amb grava',
+          detail: 'Coberta plana amb aïllament, làmina impermeabilitzant i acabat de grava.',
           art: 'parquet'
         },
         {
-          title: 'Placa de guix',
-          detail: 'Placa habitual en envans i sostres interiors.',
+          title: 'Coberta a la catalana',
+          detail: 'Solució tradicional amb rajoles ceràmiques recolzades sobre envans de sostremort i cambra d’aire.',
           art: 'plaster'
         }
       ],
@@ -93,24 +93,24 @@ const CONFIG = {
       image: 'images/facana.png',
       title: 'Façana',
       subtitle: 'Tancament i aïllament',
-      question: 'Quina solució combina tancament ceràmic, aïllament tèrmic exterior i acabat continu?',
-      description: 'La façana separa l’interior de l’exterior i contribueix al confort tèrmic i a la protecció davant la intempèrie.',
+      question: 'Quin sistema de façana escolliries per a l’habitatge?',
+      description: 'La imatge compara un sistema SATE sobre termoargila, una façana d’obra vista amb aïllament i cambra, i una façana ventilada amb revestiment ceràmic.',
       correct: 0,
       art: 'facade',
       choices: [
         {
-          title: 'Tancament + SATE',
-          detail: 'Full de fàbrica, aïllament exterior i capa d’acabat armada.',
+          title: 'Termoargila + SATE + monocapa',
+          detail: 'Full de termoargila amb aïllament tèrmic exterior, malla d’armadura i acabat de morter monocapa.',
           art: 'sate'
         },
         {
-          title: 'Bloc de formigó vist',
-          detail: 'Tancament sense el sistema d’aïllament exterior indicat.',
+          title: 'Obra vista + aïllament + cambra + envà',
+          detail: 'Full exterior de maó vist, aïllament de llana mineral, cambra d’aire i full interior ceràmic amb trasdossat.',
           art: 'block'
         },
         {
-          title: 'Envà interior',
-          detail: 'Divisió interior que no resol una façana completa.',
+          title: 'Façana ventilada ceràmica',
+          detail: 'Revestiment exterior de peces ceràmiques fixades a una subestructura metàl·lica, amb cambra ventilada i aïllament.',
           art: 'partition'
         }
       ],
@@ -121,22 +121,22 @@ const CONFIG = {
       image: 'images/instalacions.png',
       title: 'Instal·lacions',
       subtitle: 'Producció d’aigua calenta i climatització',
-      question: 'Quin sistema de producció d’aigua calenta i climatització escolliries?',
-      description: 'Tria una de les tres solucions d’instal·lacions representades a la imatge.',
+      question: 'Quin sistema de producció de calor i aigua calenta vols instal·lar?',
+      description: 'La imatge compara una caldera mural de gas, un sistema d’aerotèrmia i un sistema solar tèrmic amb acumulació d’aigua calenta.',
       correct: 0,
       art: 'installations',
       choices: [
         {
           title: 'Caldera de gas',
-          detail: 'Sistema de generació de calor mitjançant una caldera de gas.'
+          detail: 'Caldera mural connectada a la sortida de fums i a un circuit de calefacció amb radiador.'
         },
         {
           title: 'Aerotèrmia',
-          detail: 'Bomba de calor que aprofita l’energia de l’aire exterior.'
+          detail: 'Bomba de calor amb unitat exterior i mòdul interior per produir calefacció i aigua calenta.'
         },
         {
-          title: 'Dipòsit acumulador, escalfador i panells solars',
-          detail: 'Sistema amb acumulació d’aigua calenta i captació solar.'
+          title: 'Dipòsit acumulador i panells solars',
+          detail: 'Sistema solar tèrmic amb captadors a coberta, acumulador d’aigua calenta i elements de regulació.'
         }
       ],
       success: 'La solució d’instal·lacions seleccionada correspon al sistema previst per a l’habitatge.'
@@ -146,22 +146,22 @@ const CONFIG = {
       image: 'images/tancaments.png',
       title: 'Tancaments exteriors',
       subtitle: 'Finestres i portes',
-      question: 'Quin tipus de fusteria exterior triaries?',
-      description: 'Escull el material de les finestres i portes exteriors de l’habitatge.',
+      question: 'Quin material vols per als marcs de les finestres?',
+      description: 'La imatge compara tres perfils de fusteria exterior: alumini amb trencament de pont tèrmic, PVC i fusta.',
       correct: 0,
       art: 'exterior',
       choices: [
         {
-          title: 'Alumini amb trencament de pont tèrmic',
-          detail: 'Perfils d’alumini amb separació tèrmica entre les cares exterior i interior.'
+          title: 'Alumini amb TPT',
+          detail: 'Perfil d’alumini amb trencament de pont tèrmic que separa les cares exterior i interior del marc.'
         },
         {
           title: 'PVC',
-          detail: 'Perfils de PVC amb cambres interiors i prestacions d’aïllament tèrmic.'
+          detail: 'Perfil de PVC multicambra, amb bona capacitat d’aïllament tèrmic.'
         },
         {
           title: 'Fusta',
-          detail: 'Fusteria de fusta amb acabat i manteniment adequats per a ús exterior.'
+          detail: 'Perfil de fusta amb unions i acabat protector adequats per a fusteria exterior.'
         }
       ],
       success: 'La fusteria escollida s’ha de definir segons les prestacions tèrmiques, acústiques i de durabilitat del projecte.'
