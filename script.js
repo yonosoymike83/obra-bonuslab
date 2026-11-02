@@ -550,11 +550,10 @@ function openStage(index) {
     box.innerHTML = `
       <label for="pem-input">Pressupost d’execució material (€)</label>
       <input id="pem-input" type="number" inputmode="numeric"
-        min="0" step="1" placeholder="Ex. 144000"
+        min="0" step="1" placeholder="Introdueix el PEM"
         value="${selections[index] ?? ''}">
       <p class="budget-hint">
         Superfície: <strong>${CONFIG.houseAreaM2} m²</strong>
-        · Mòdul orientatiu: <strong>${money(CONFIG.pemPerM2)}/m²</strong>
       </p>`;
 
     $('chapter-options').appendChild(box);
