@@ -1,4 +1,3 @@
-
 const CONFIG = {
   houseAreaM2: 120,
   pemPerM2: 1220,
