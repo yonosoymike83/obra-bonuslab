@@ -1,8 +1,10 @@
+
 const CONFIG = {
   houseAreaM2: 120,
   pemPerM2: 1220,
-  finalCoordinates: 'N 00° 00.000 E 000° 00.000', // Substitueix per les coordenades definitives
+  finalCoordinates: 'N 00° 00.000 E 000° 00.000',
   pemToleranceEuros: 0,
+
   stages: [
     {
       id: 'foundation',
@@ -32,6 +34,7 @@ const CONFIG = {
       ],
       success: 'Les sabates corregudes reparteixen de manera contínua les càrregues dels murs al terreny, si el càlcul i el terreny ho permeten.'
     },
+
     {
       id: 'structure',
       image: 'images/estructura.png',
@@ -60,6 +63,7 @@ const CONFIG = {
       ],
       success: 'El forjat unidireccional amb parets de càrrega és una solució habitual en habitatges unifamiliars de dimensions reduïdes i amb sabates corregudes de fonamentació.'
     },
+
     {
       id: 'roof',
       image: 'images/coberta.png',
@@ -86,8 +90,9 @@ const CONFIG = {
           art: 'plaster'
         }
       ],
-      success: 'La teula àrab és una cobertura tradicional per a cobertes inclinades en habitatges unifamiliars.'
+      success: 'La solució de coberta plana incorpora aïllament tèrmic, impermeabilització i una capa de protecció de grava.'
     },
+
     {
       id: 'facade',
       image: 'images/facana.png',
@@ -95,7 +100,7 @@ const CONFIG = {
       subtitle: 'Tancament i aïllament',
       question: 'Quin sistema de façana escolliries per a l’habitatge?',
       description: 'La façana és l’element constructiu que tanca i protegeix l’edifici de l’exterior i proporciona aïllament tèrmic i acústic.',
-      correct: 3,
+      correct: 2,
       art: 'facade',
       choices: [
         {
@@ -116,6 +121,7 @@ const CONFIG = {
       ],
       success: 'El SATE incorpora l’aïllament per la cara exterior del tancament, millora l’eficiència energètica de l’edifici i redueix els ponts tèrmics.'
     },
+
     {
       id: 'installations',
       image: 'images/instalacions.png',
@@ -139,8 +145,9 @@ const CONFIG = {
           detail: 'Sistema que aprofita l’energia solar per escalfar l’aigua, que s’emmagatzema en un dipòsit acumulador per produir aigua calenta sanitària (ACS).'
         }
       ],
-      success: 'La instal·lació amb caldera de gas no és adequada en aquest cas; cal tenir en compte les exigències aplicables del Codi tècnic de l’edificació en matèria d’eficiència energètica i d’ús d’energies renovables.'
+      success: 'L’aerotèrmia i el sistema solar permeten produir aigua calenta aprofitant fonts d’energia renovables.'
     },
+
     {
       id: 'exterior',
       image: 'images/tancaments.png',
@@ -166,13 +173,14 @@ const CONFIG = {
       ],
       success: 'Les tres opcions de fusteria exterior són solucions vàlides i poden oferir un bon aïllament, segons les prestacions dels perfils i dels vidres.'
     },
+
     {
       id: 'budget',
       image: 'images/pressupost.png',
       title: 'Pressupost final',
       subtitle: 'PEM de l’obra',
-      question: 'Calcula el pressupost d’execució material amb la superfície i el mòdul indicats.',
-      description: 'Multiplica la superfície construïda pel mòdul orientatiu del PEM per metre quadrat.',
+      question: 'Arriba el moment de posar números al projecte! Quant costarà fer realitat la casa de la Signal? Calcula el pressupost final i prepara’t per presentar-li l’oferta!',
+      description: 'Introdueix el pressupost d’execució material de l’habitatge.',
       correct: 'budget',
       art: 'budget',
       budget: true,
@@ -196,10 +204,6 @@ let currentStage = 0;
 let selections = {};
 let wrongStages = new Set();
 
-/*
- * Miniatures del resum.
- * Comprova que aquests fitxers existeixin dins la carpeta images.
- */
 const summaryImages = {
   foundation: 'images/01-fon-mini.png',
   structure: 'images/02-estr-mini.png',
@@ -253,6 +257,7 @@ function artSvg(type, variant = 'main') {
       <path d="M120 102 V117 M140 108 V123 M160 114 V129
         M180 120 V135 M200 114 V129 M220 108 V123 M240 102 V117"
         stroke="#555" stroke-width="2"/>`,
+
     isolated: `${soil}
       <path d="M75 122 L130 138 L165 128 L110 112Z"
         fill="#ddd" stroke="#fff"/>
@@ -269,6 +274,7 @@ function artSvg(type, variant = 'main') {
       <path d="M105 63 L122 68 L122 120 L105 115Z" fill="#c6bba8"/>
       <path d="M220 43 L237 48 L237 98 L220 93Z" fill="#c6bba8"/>
       <path d="M105 63 L122 68 L237 48 L220 43Z" fill="#eee3d0"/>`,
+
     raft: `${soil}
       <path d="M70 115 L180 147 L290 115 L180 83Z"
         fill="#ddd" stroke="#fff"/>
@@ -307,6 +313,7 @@ function artSvg(type, variant = 'main') {
         fill="#8c8170" stroke="#bdb09d"/>
       <path d="M180 109 V143 L290 111 V77Z"
         fill="#a79a86" stroke="#d6c9b7"/>`,
+
     partition: `
       <path d="M85 65 L195 97 L275 73 L165 41Z"
         fill="#d4d4d4" stroke="#eee"/>
@@ -317,6 +324,7 @@ function artSvg(type, variant = 'main') {
       <path d="M100 78 L100 143 M117 83 L117 148 M134 88 L134 153
         M151 93 L151 158 M168 98 L168 163"
         stroke="#bdbdbd" stroke-width="2"/>`,
+
     ceiling: `
       <path d="M50 80 L180 118 L310 80 L180 42Z"
         fill="#ddd" stroke="#fff"/>
@@ -344,6 +352,7 @@ function artSvg(type, variant = 'main') {
       </g>
       <path d="M65 130 L180 169 L295 130"
         fill="none" stroke="#eee" stroke-width="3"/>`,
+
     parquet: `
       <path d="M60 130 L180 166 L300 130 L180 94Z"
         fill="#a58a68" stroke="#ddd"/>
@@ -354,6 +363,7 @@ function artSvg(type, variant = 'main') {
           M90 135 L90 146 M120 144 L120 155 M150 153 L150 164
           M210 153 L210 164 M240 144 L240 155 M270 135 L270 146"/>
       </g>`,
+
     plaster: `
       <path d="M80 62 L190 94 L280 67 L170 35Z"
         fill="#ddd" stroke="#fff"/>
@@ -377,6 +387,7 @@ function artSvg(type, variant = 'main') {
       <path d="M240 98 V158 L261 151 V91Z" fill="#b7aa96" stroke="#eee"/>
       <path d="M75 75 L180 108 L285 75" fill="none" stroke="#eee" stroke-width="3"/>
       <path d="M92 84 L180 111 L267 84" stroke="#555" stroke-width="2" fill="none"/>`,
+
     block: `
       <path d="M85 70 L190 102 L275 76 L170 44Z"
         fill="#aaa" stroke="#ddd"/>
@@ -387,6 +398,7 @@ function artSvg(type, variant = 'main') {
           M85 130 L190 162 L275 136 M120 81 V158 M155 92 V169
           M220 93 V170 M250 84 V161"/>
       </g>`,
+
     partition: null
   };
 
@@ -462,7 +474,6 @@ function stageArt(stage) {
   return `<img class="chapter-main-image" src="${stage.image}" alt="${stage.title}" loading="eager">`;
 }
 
-/* Mostra les set partides amb les miniatures del resum. */
 function renderSummary() {
   const list = $('summary-list');
   list.innerHTML = '';
@@ -507,11 +518,18 @@ function renderSummary() {
     list.appendChild(item);
   });
 
-  const count = CONFIG.stages.filter((_, i) => selections[i] !== undefined).length;
+  const count = CONFIG.stages.filter((_, i) =>
+    selections[i] !== undefined
+  ).length;
 
-  $('progress-count').textContent = `${count}/${CONFIG.stages.length}`;
-  $('progress-fill').style.width = `${count / CONFIG.stages.length * 100}%`;
-  $('submit-button').disabled = count !== CONFIG.stages.length;
+  $('progress-count').textContent =
+    `${count}/${CONFIG.stages.length}`;
+
+  $('progress-fill').style.width =
+    `${count / CONFIG.stages.length * 100}%`;
+
+  $('submit-button').disabled =
+    count !== CONFIG.stages.length;
 
   $('submit-hint').textContent = count === CONFIG.stages.length
     ? 'Totes les partides estan emplenades. Ja pots enviar el pressupost.'
@@ -520,7 +538,6 @@ function renderSummary() {
       } per completar.`;
 }
 
-/* En entrar en una partida, amaga el logo, però no modifica les miniatures. */
 function openStage(index) {
   currentStage = index;
   const stage = CONFIG.stages[index];
@@ -537,7 +554,9 @@ function openStage(index) {
 
   $('chapter-title').textContent = stage.title;
   $('chapter-question').textContent = stage.question;
-  $('chapter-number').textContent = String(index + 1).padStart(2, '0');
+  $('chapter-number').textContent =
+    String(index + 1).padStart(2, '0');
+
   $('chapter-visual').innerHTML = stageArt(stage);
   $('chapter-note').textContent = stage.description;
   $('chapter-options').innerHTML = '';
@@ -565,12 +584,15 @@ function openStage(index) {
       $('save-choice').disabled =
         !input.value.trim() || Number(input.value) < 0;
     });
+
   } else {
     stage.choices.forEach((choice, j) => {
       const button = document.createElement('button');
       button.type = 'button';
+
       button.className =
-        'option-card' + (selections[index] === j ? ' selected' : '');
+        'option-card' +
+        (selections[index] === j ? ' selected' : '');
 
       button.innerHTML = `
         <span class="option-copy">
@@ -587,7 +609,10 @@ function openStage(index) {
           .forEach(el => el.classList.remove('selected'));
 
         button.classList.add('selected');
-        button.querySelector('.option-select').lastChild.textContent = 'SELECCIONAT';
+
+        button.querySelector('.option-select')
+          .lastChild.textContent = 'SELECCIONAT';
+
         selections[index] = j;
         $('save-choice').disabled = false;
       });
@@ -595,20 +620,21 @@ function openStage(index) {
       $('chapter-options').appendChild(button);
     });
 
-    $('save-choice').disabled = selections[index] === undefined;
+    $('save-choice').disabled =
+      selections[index] === undefined;
   }
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* En tornar al resum, es mostren de nou el logo i les miniatures. */
 function saveChoice() {
   const stage = CONFIG.stages[currentStage];
 
   if (stage.budget) {
     const input = $('pem-input');
 
-    if (!input || !input.value.trim() || Number(input.value) < 0) {
+    if (!input || !input.value.trim() ||
+        Number(input.value) < 0) {
       return;
     }
 
@@ -631,11 +657,20 @@ function submitBudget() {
 
   CONFIG.stages.forEach((stage, i) => {
     if (stage.budget) {
-      if (Math.abs(Number(selections[i]) - expectedPEM) > CONFIG.pemToleranceEuros) {
+      if (
+        Math.abs(Number(selections[i]) - expectedPEM) >
+        CONFIG.pemToleranceEuros
+      ) {
         wrongStages.add(i);
       }
-    } else if (selections[i] !== stage.correct) {
-      wrongStages.add(i);
+    } else {
+      const validAnswer = Array.isArray(stage.correct)
+        ? stage.correct.includes(selections[i])
+        : selections[i] === stage.correct;
+
+      if (!validAnswer) {
+        wrongStages.add(i);
+      }
     }
   });
 
@@ -669,14 +704,15 @@ function submitBudget() {
       </div>
       <button type="button">Revisar →</button>`;
 
-    row.querySelector('button').addEventListener('click', () => openStage(i));
+    row.querySelector('button')
+      .addEventListener('click', () => openStage(i));
+
     list.appendChild(row);
   });
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* Torna al resum i recupera el logo. */
 function goHome() {
   $('chapter-view').classList.add('hidden');
   $('result-view').classList.add('hidden');
