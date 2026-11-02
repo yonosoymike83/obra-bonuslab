@@ -82,7 +82,7 @@ const CONFIG = {
         },
         {
           title: 'Coberta a la catalana',
-          detail: 'Solució tradicional amb rajoles ceràmiques recolzades sobre envans de sostremort i una cambra d’aire que millora el comportament tèrmic de l'edifici.',
+          detail: 'Solució tradicional amb rajoles ceràmiques recolzades sobre envans de sostremort i una cambra d’aire que millora el comportament tèrmic de l’edifici.',
           art: 'plaster'
         }
       ],
@@ -146,7 +146,7 @@ const CONFIG = {
       image: 'images/tancaments.png',
       title: 'Tancaments exteriors',
       subtitle: 'Finestres',
-      question: 'Quin material vols fer servir per als tancaments de l'habitatge?',
+      question: 'Quin material vols fer servir per als tancaments de l’habitatge?',
       description: 'Els tancaments exteriors són els elements que tanquen els buits de les façanes i les cobertes, com ara finestres i portes.',
       correct: 0,
       art: 'exterior',
