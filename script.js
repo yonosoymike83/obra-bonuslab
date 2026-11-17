@@ -2,7 +2,7 @@
 const CONFIG = {
   houseAreaM2: 120,
   pemPerM2: 1220,
-  finalCoordinates: 'N 41° 58.985 E 002° 48.855',
+  finalCoordinates: 'N 41° 58.837 E 002° 48.748',
   pemToleranceEuros: 0,
 
   stages: [
